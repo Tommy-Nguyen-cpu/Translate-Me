@@ -1,0 +1,5 @@
+tensorflow[and-cuda]
+tensorflow-estimator
+tensorflow-text
+protobuf~=3.20.3
+tensorflow_datasets
