@@ -31,7 +31,7 @@ class PositionalEmbedding(tf.keras.layers.Layer):
         x = self.embedding(x) # Converts x to embedding vector.
 
         # Normalize variance of the embedding layer. Keeps positional encoding and embedding layer to be of same variance/scale.
-        x = tf.sqrt(tf.cast(x, dtype=tf.float32))
+        x *= tf.sqrt(tf.cast(x, dtype=tf.float32))
 
         x = x + self.pos_encoding[tf.newaxis, :length, :] # Apply positional encoding to x. Grab the first "length" rows, and adds an extra dimension to ensure positional encoding matches shape of x.
 
