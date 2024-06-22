@@ -14,7 +14,7 @@ class Transformer(tf.keras.Model):
     
     def call(self, inputs):
         # In order to use the ".fit" method, we must pass the x and context as 1 argument.
-        x, context = inputs
+        context, x = inputs
 
         context = self.encoder(context) # # (batch_size, sequence_length, d_model)
 

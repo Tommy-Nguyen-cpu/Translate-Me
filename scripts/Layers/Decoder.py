@@ -12,7 +12,7 @@ class Decoder(tf.keras.layers.Layer):
         self.pos_embedding = PositionalEmbedding(vocab_size = vocab_size, d_model = d_model) # Incorporates positional information for tokens.
         self.dropout = tf.keras.layers.Dropout(dropout_rate) # Neurons will learn independently without relying too much on neighboring neurons.
 
-        self. dec_layers = [DecoderLayer(d_model = d_model, num_heads = num_heads, dff = dff, dropout_rate = dropout_rate) for _ in range(num_layers)]
+        self.dec_layers = [DecoderLayer(d_model = d_model, num_heads = num_heads, dff = dff, dropout_rate = dropout_rate) for _ in range(self.num_layers)]
     
     def call(self, x, context):
         x = self.pos_embedding(x) # Apply positional information to query.
