@@ -6,7 +6,6 @@ class DataPreprocessor():
         self.tokenizers = tokenizers
         self.max_tokens = max_tokens
 
-    # TODO: Retrain tokenizer so that the tokenizers are called "input" and "label" instead of "pt" and "en".
     def prepare_batch(self, input_data, label_data):
         input_data = self.tokenizers.input.tokenize(input_data) # Output is RaggedTensor. Converts string to tokens.
         input_data = input_data[:, :self.max_tokens] # Trims to max_tokens.

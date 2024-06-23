@@ -13,6 +13,8 @@ class Decoder(tf.keras.layers.Layer):
         self.dropout = tf.keras.layers.Dropout(dropout_rate) # Neurons will learn independently without relying too much on neighboring neurons.
 
         self.dec_layers = [DecoderLayer(d_model = d_model, num_heads = num_heads, dff = dff, dropout_rate = dropout_rate) for _ in range(self.num_layers)]
+
+        self.last_attn_score = None
     
     def call(self, x, context):
         x = self.pos_embedding(x) # Apply positional information to query.
