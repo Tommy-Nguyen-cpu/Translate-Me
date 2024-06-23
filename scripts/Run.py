@@ -84,7 +84,7 @@ def train_model(model_output_path = "./trained_model", dataset_name = "ted_hrlr_
     translator = ExportTranslator(translator)
 
     # Save model.
-    tf.saved_model.save(model_output_path)
+    tf.saved_model.save(translator, model_output_path)
 
     return translator
 
