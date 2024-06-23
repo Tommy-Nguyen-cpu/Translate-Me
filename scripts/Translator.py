@@ -32,7 +32,7 @@ class Translator(tf.Module):
             predicted_id = tf.argmax(predictions, axis = -1) # Grab the highest value in the entire Tensor.
 
             # Add the predicted_id to our output, which was fed to our decoder as input.
-            output_array.write(i+1, predicted_id)
+            output_array.write(i+1, predicted_id[0])
 
             # If the predicted token is the end token, then we reached the end of the sentence and should stop generating.
             if predicted_id == end:
