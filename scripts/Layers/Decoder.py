@@ -17,6 +17,8 @@ class Decoder(tf.keras.layers.Layer):
         self.last_attn_score = None
     
     def call(self, x, context):
+        # 'x' is token-Ids with shape (batch, target_sequence_length)
+        # After positional embedding it'll be of shape: (batch, target_sequence_length, d_model)
         x = self.pos_embedding(x) # Apply positional information to query.
 
         x = self.dropout(x) # Produce output with dropout.
