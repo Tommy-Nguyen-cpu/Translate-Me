@@ -21,7 +21,7 @@ class Translator(tf.Module):
 
         # We are going to be using "tf.TensorArray" instead of lists because our loop will only be registered as dynamic by "tf.function" if we use "tf.TensorArray".
         output_array = tf.TensorArray(dtype = tf.int64, size = 0, dynamic_size = True) # Initialize empty array that can add elements.
-        output_array.write(0, start) # Write the start token as our first element in the output.
+        output_array = output_array.write(0, start) # Write the start token as our first element in the output.
 
         for i in tf.range(max_length):
             output = tf.transpose(output_array.stack()) # ".stack" converts TensorArray to Tensor, and ".transpose" rotates the tensor.
@@ -32,7 +32,7 @@ class Translator(tf.Module):
             predicted_id = tf.argmax(predictions, axis = -1) # Grab the highest value in the entire Tensor.
 
             # Add the predicted_id to our output, which was fed to our decoder as input.
-            output_array.write(i+1, predicted_id[0])
+            output_array = output_array.write(i+1, predicted_id[0])
 
             # If the predicted token is the end token, then we reached the end of the sentence and should stop generating.
             if predicted_id == end:
