@@ -1,6 +1,9 @@
-from scripts.Run import train_model
+from scripts.Run import load_model
 import gradio as gr
 
-model = train_model()
-demo = gr.Interface(model.__call__, "text", "text")
+model = load_model("trained_model/")
+def get_output(sentence, max_word_outputs):
+    return model(sentence, max_word_outputs).numpy().decode("utf-8")
+
+demo = gr.Interface(get_output, ["text", "number"], "text")
 demo.launch(share=True)
